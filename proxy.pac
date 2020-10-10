@@ -5,5 +5,5 @@ function FindProxyForURL(url, host) {
    if (shExpMatch(url, "*zju*")){
      return "DIRECT";
    }
-     return 'PROXY zju.wenzhub.top:7890;PROXY 106.14.119.104:7004;DIRECT;'
+     return 'PROXY 127.0.0.1:7890;PROXY zju.wenzhub.top:7890;PROXY 106.14.119.104:7004;DIRECT;'
 }
