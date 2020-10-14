@@ -5619,6 +5619,9 @@ function FindProxyForURL(url, host) {
 }
 
 function testHost(host, index) {
+    if (host == "bbs.zjuqsc.com") {
+        return 'DIRECT';
+    }
     for (var i = 0; i < rules[index].length; i++) {
         for (var j = 0; j < rules[index][i].length; j++) {
             lastRule = rules[index][i][j];
