@@ -1,0 +1,4 @@
+payload:
+  # 代理列表
+  # MyList
+  - DOMAIN-SUFFIX,bandwidthplace.com
