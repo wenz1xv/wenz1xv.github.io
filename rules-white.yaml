@@ -1,5 +1,21 @@
 payload:
-  # Unbreak 白名单 不应该被广告链接的网站
+  # 直连
+  - PROCESS-NAME,aria2c,DIRECT
+  - PROCESS-NAME,fdm,DIRECT
+  - PROCESS-NAME,Folx,DIRECT
+  - PROCESS-NAME,NetTransport,DIRECT
+  - PROCESS-NAME,Thunder,DIRECT
+  - PROCESS-NAME,Transmission,DIRECT
+  - PROCESS-NAME,uTorrent,DIRECT
+  - PROCESS-NAME,WebTorrent,DIRECT
+  - PROCESS-NAME,WebTorrent Helper,DIRECT
+  - DOMAIN-SUFFIX,smtp,DIRECT
+  - DOMAIN-KEYWORD,zju,DIRECT
+  - DOMAIN-KEYWORD,aria2,DIRECT
+  - PROCESS-NAME,DownloadService,DIRECT
+  - PROCESS-NAME,Weiyun,DIRECT
+  - PROCESS-NAME,baidunetdisk,DIRECT
+  
 
   # Epicgames
   - DOMAIN-SUFFIX,ol.epicgames.com
