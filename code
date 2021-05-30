@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<title>折江大学通行码</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="./css/zju_code.css">
+<script src="./js/jquery.js"></script>
+<script>
+    alert('点击办事大厅切换姓名, 查询记录更换颜色')
+    jQuery(function () {
+        sy()
+    })
+    cnt = 0
+    function sy() {
+        nowtime = new Date();
+        year = nowtime.getFullYear(); //年
+        month = nowtime.getMonth() + 1; //月
+        d = new Date(year, month, 0);
+        days = d.getDate();
+        day = nowtime.getDate(); //日
+        hour = nowtime.getHours(); //时
+        minutes = nowtime.getMinutes(); //分
+        seconds = nowtime.getSeconds(); //秒
+        $("#dateTime").append('<div class="time">同步时间：' + p(year) + '-' + p(month) + "-" + p(day) + ' 10:29:11</div>');
+        $("#valid").append('<div class="time">有效期：2021-02-26' + " - " + p(year) + '-' +
+            p(month) + "-" + p(days) + '</div>');
+    }
+
+    if (true) {
+        //获取系统时间
+        function showTime() {
+            nowtime = new Date();
+            year = nowtime.getFullYear(); //年
+            month = nowtime.getMonth() + 1; //月
+            day = nowtime.getDate(); //日
+            hour = nowtime.getHours(); //时
+            minutes = nowtime.getMinutes(); //分
+            seconds = nowtime.getSeconds(); //秒
+            //文字增加空格
+            document.getElementById("div_timer").style = "white-space:pre;";
+            //显示时间
+            document.getElementById("div_timer").innerText = p(month) + "月" + p(day) + "日 " + p(hour) + ":" + p(
+                minutes) + ":" + p(seconds);
+        }
+        setInterval("showTime()", 1000);
+        //月日时分秒小于10补0
+        function p(s) {
+            return s < 10 ? '0' + s : s;
+        }
+    }
+
+    function changename() {
+        $('#name').html(window.prompt("你的名字") + '的通行码')
+    }
+    function changepic() {
+        $('#pic').attr('src','./images/code'+cnt%2+'.png');
+        cnt = cnt+1;
+    }
+</script>
+</head>
+
+<body class="blue-bg">
+    <div class="banner"><img src="./images/text.png"></div>
+    <div class="content-box">
+        <div class="top-title">
+            <h3 id='name'>刘醒的通行码</h3>
+            <span class="bgr-blue">神秘人</span>
+        </div>
+        <strong>
+            <div class="time2" id="div_timer" style="white-space: pre;">00月00日 00:00:00</div>
+        </strong>
+        <div class="qr" style="text-align: center;">
+            <div id="output" style="margin-top: 10px;margin-bottom: 10px">
+                <img id='pic' src="./images/code.jpg" width="180" height="180">
+            </div>
+        </div>
+        <div class="time" id='valid'></div>
+        <div id="hzjkm">
+            <div class="hz" style="color: #e74c3c">健康码为 未知</div>
+        </div>
+        <div id="dateTime">
+            <div class="time"></div>
+        </div>
+        <p class="tip" style="margin-top: 10px;">凭蓝码可在浙江大学校园内通行<br>请主动出示，配合检查</p>
+        <div style="text-align:center; margin-top: 10px">
+            <a href="#" onclick="changename();return false;">办事大厅</a>&nbsp;&nbsp;&nbsp;
+            <a target="_blank" href="http://one.zju.edu.cn/pass_code/zx/getList">查看申请记录</a>&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="bottom-tip">
+        <h3>安 保 处 ：0571-88206110</h3>
+        <a href="http://xwfw.zju.edu.cn/mobile/redir.php?catalog_id=371039" target="_blank" class="link-btn">常见问题</a>
+        <h3>技术支持：0571-87951669</h3>
+    </div>
+</body>
+
+</html>
