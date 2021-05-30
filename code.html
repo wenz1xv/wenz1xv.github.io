@@ -20,9 +20,8 @@
         hour = nowtime.getHours(); //时
         minutes = nowtime.getMinutes(); //分
         seconds = nowtime.getSeconds(); //秒
-        $("#dateTime").append('<div class="time">同步时间：' + p(year) + '-' + p(month) + "-" + p(day) + ' 10:29:11</div>');
-        $("#valid").append('<div class="time">有效期：2021-02-26' + " - " + p(year) + '-' +
-            p(month) + "-" + p(days) + '</div>');
+        $("#dateTime").append('<div class="time">同步时间：' + p(year) + '-' + p(month) + "-" + p(day) + ' '+ p(hour) + ":" + p(minutes) + ":" + p(seconds));
+        $("#valid").append('<div class="time">有效期'+ p(year) + '-' + p(month) + "01 - " + p(year) + '-' + p(month) + "-" + p(days) + '</div>');
     }
 
     if (true) {
@@ -38,8 +37,7 @@
             //文字增加空格
             document.getElementById("div_timer").style = "white-space:pre;";
             //显示时间
-            document.getElementById("div_timer").innerText = p(month) + "月" + p(day) + "日 " + p(hour) + ":" + p(
-                minutes) + ":" + p(seconds);
+            document.getElementById("div_timer").innerText = p(month) + "月" + p(day) + "日 " + p(hour) + ":" + p(minutes) + ":" + p(seconds);
         }
         setInterval("showTime()", 1000);
         //月日时分秒小于10补0
