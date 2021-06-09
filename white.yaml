@@ -1,0 +1,4 @@
+payload:
+  # 白名单列表
+  - DOMAIN-SUFFIX,cc98.org
+  - DOMAIN-SUFFIX,zjuqsc.com
