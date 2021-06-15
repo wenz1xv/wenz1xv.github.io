@@ -1,0 +1,120 @@
+mixed-port: 1080
+redir-port: 7892
+allow-lan: true
+mode: Rule
+log-level: error
+secret: 7892
+external-controller: 0.0.0.0:9090
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  enhanced-mode: redir-host
+  nameserver:
+    - 10.10.0.21
+    - 223.5.5.5
+    - tls://13800000000.rubyfish.cn:853
+  fallback:
+    - tls://dns.google:853
+    - tls://13800000000.rubyfish.cn:853
+    - tls://1.1.1.1:853
+    - tls://1.0.0.1:853
+  fake-ip-filter:
+    - msftncsi.com
+    - msftconnecttest.com
+
+proxies:
+proxy-groups:
+  - name: default
+    type: select
+    proxies:
+      - DIRECT
+      - proxy
+  - name: match
+    type: select
+    proxies:
+      - DIRECT
+      - proxy
+  - name: proxy
+    type: select
+    proxies:
+      - auto
+      - DIRECT
+  - name: auto
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+
+rule-providers:
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    url: "https://raw.fastgit.org/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml"
+    path: ./ruleset/LocalAreaNetwork.yaml
+    interval: 864000
+
+  BanEasyListChina:
+    type: http
+    behavior: classical
+    url: "https://raw.fastgit.org/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyListChina.yaml"
+    path: ./ruleset/BanEasylistChina.yaml
+    interval: 864000
+
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: "https://raw.fastgit.org/ACL4SSR/ACL4SSR/master/Clash/Providers/BanProgramAD.yaml"
+    path: ./ruleset/BanProgramAD.yaml
+    interval: 864000
+
+  BanAD:
+    type: http
+    behavior: classical
+    url: "https://raw.fastgit.org/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
+    path: ./ruleset/BanAD.yaml
+    interval: 864000
+
+  ProxyGFWlist:
+    type: http
+    behavior: classical
+    url: "https://raw.fastgit.org/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml"
+    path: ./ruleset/ProxyGFWlist.yaml
+    interval: 864000
+
+  ChinaCompanyIp:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.fastgit.org/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaCompanyIp.yaml"
+    path: ./ruleset/ChinaCompanyIp.yaml
+    interval: 864000
+  
+  ChinaDomain:
+    type: http
+    behavior: classical
+    url: "https://raw.fastgit.org/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaDomain.yaml"
+    path: ./ruleset/ChinaDomain.yaml
+    interval: 864000
+
+  ChinaIp:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.fastgit.org/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaIp.yaml"
+    path: ./ruleset/ChinaIp.yaml
+    interval: 864000
+ 
+# 规则
+rules:
+  # direct
+  - RULE-SET,LocalAreaNetwork,default
+  - RULE-SET,ChinaDomain,default
+  - RULE-SET,ChinaCompanyIp,default,no-resolve
+  - RULE-SET,ChinaIp,default,no-resolve
+  # proxy
+  - RULE-SET,ProxyGFWlist,proxy
+  # reject
+  - RULE-SET,BanAD,REJECT
+  - RULE-SET,BanEasyListChina,REJECT
+  - RULE-SET,BanProgramAD,REJECT
+  # match
+  - GEOIP,CN,default
+  - MATCH,match
