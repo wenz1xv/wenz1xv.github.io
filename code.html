@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-
-<title>折江大学通行码</title>
+<html>
+<title>浙江大学通行码</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="stylesheet" href="./css/zju_code.css">
 <script src="./js/jquery.js"></script>
 <script>
-    alert('点击办事大厅切换姓名, 查询记录更换颜色')
+    alert('点击姓名更改姓名, 查询记录更换颜色')
     jQuery(function () {
         sy()
     })
@@ -47,34 +47,43 @@
     }
 
     function changename() {
-        $('#name').html(window.prompt("你的名字") + '的通行码')
+        var userName=window.prompt("请输入你的名字以更改健康码");
+        if(userName!=''){
+            $('#name').html(userName + '的通行码')
+        }
     }
+    
     function changepic() {
         $('#pic').attr('src','./images/code'+cnt%2+'.png');
         cnt = cnt+1;
     }
+
+    function gotoHealthCode(){
+        window.location.href="alipays://platformapi/startapp?url=https%3A%2F%2Fh5.dingtalk.com%2FhealthAct%2Findex.html&appId=20000067";
+    }
 </script>
 </head>
 
-<body class="blue-bg">
+<body class="blue-bg" onload="changename()">
     <div class="banner"><img src="./images/text.png"></div>
     <div class="content-box">
         <div class="top-title">
-            <h3 id='name'>刘醒的通行码</h3>
-            <span class="bgr-blue">神秘人</span>
+            <h3 id="name" onclick="changename()">刘醒的通行码</h3>
+            <span class="bgr-blue">本科生</span>
         </div>
         <strong>
             <div class="time2" id="div_timer" style="white-space: pre;">00月00日 00:00:00</div>
         </strong>
         <div class="qr" style="text-align: center;">
-            <div id="output" style="margin-top: 10px;margin-bottom: 10px">
-                <img id='pic' src="./images/code1.png" width="180" height="180">
+            <div id="output" style="margin-top: 10px;margin-bottom: 10px" onclick="changepic()">
+                <img id='pic' src="./images/code1.png" width="180" height="180" >
             </div>
         </div>
         <div class="time" id='valid'></div>
         <div id="hzjkm">
-            <div class="hz" style="color: #e74c3c">你被强化了</div>
+            <div class="hz" style="color: #3c72e7;font-family: Microsoft YaHei;">健康码获取失败（请打开支付宝出示）</div>
         </div>
+        <div style="background-color: #7aa0f1;margin-top:10px;margin-left: 20%;margin-right: 20%; padding: 1%; text-align: center;color: white; border-radius: 5px;" onclick="gotoHealthCode()">查询新冠疫苗接种记录</div>
         <div id="dateTime">
             <div class="time"></div>
         </div>
