@@ -3,7 +3,7 @@
  * GFWList Last-Modified: 2020-10-08 22:37:39
  */
 
-var proxy = 'PROXY zju.wenzhub.top:1080;PROXY 127.0.0.1:7890:PROXY 106.14.119.104:7004;';
+var proxy = 'PROXY zju.wenzhub.top:1080;PROXY 127.0.0.1:7890;';
 var rules = [
             "030buy.com",
             "0rz.tw",
